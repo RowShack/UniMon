@@ -8,7 +8,27 @@ Everything is set in the web interface under **Settings** (admins only), and app
 | Section | What admins manage |
 |---|---|
 | **Consoles** | Add, edit, test, pause or delete consoles. A **local console** has an address (port 443 unless you set another), a read-only API key and a pinned certificate. A console **through the Site Manager** is picked from the Site Manager's list. The API key is stored encrypted and never shown again. The **Site Manager key** (optional) also gives official WAN health for the consoles in that account. |
-| **Monitoring** | The poll interval (60 seconds by default), how long history is kept, and the saved weekly and monthly reports (day and time). |
+| **Monitoring** | The poll interval (60 seconds by default), how long history is kept, and the saved weekly and monthly reports (day and time). Also **Experience probes** and **Security advisories** (below). |
+
+### Experience probes
+
+Off by default. Turn them on only if the UniMon server is inside one of the monitored sites: choose that site, give the
+gateway's LAN address in the server's network (leave it empty to skip the gateway check) and an interval. UniMon then tests
+the gateway, DNS servers, the internet and some web sites from the server itself and raises an issue that says where the
+problem is. The results show on that site's Overview.
+
+### Security advisories
+
+Once a day UniMon fetches the public CVE list for the UniFi Network application and your gateway models from the US National
+Vulnerability Database (`services.nvd.nist.gov`), through an optional proxy, and matches it against the versions you run on
+your own server. Only the NVD's name of each product is sent, never a version, a device or a site name. The result is on each
+site's **Firmware & lifecycle** tab, where an admin can dismiss a CVE that doesn't apply (for one site or all). Turn the fetch
+off here if the server may not reach the internet. Recent CVEs that have no version data yet are listed to check by hand.
+
+### Score exclusions
+
+On **Issues & events** an admin or operator can leave a device, a WAN link or a whole site out of the health score and alerts.
+Excluded issues still show, marked as such. A console that can't be reached is never hidden this way.
 
 ### History
 

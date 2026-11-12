@@ -13,7 +13,19 @@ same signed updates.
 
 - **Overview, Devices, Clients, WAN and Wi-Fi** for every console's sites, with a drill-down panel per device, client and
   issue.
-- **Problems with a cause.** Health checks turn readings into issues with a severity, shown on **Issues & events**.
+- **Problems with a cause.** Health checks turn readings into issues with a severity and a suggested fix, shown on
+  **Issues & events**: devices offline or no longer supported, CPU and memory, access points retrying transmissions,
+  mixed firmware within one model, updates waiting, WAN down, latency and loss.
+- **Leave things out of the score.** Acknowledge or mute an issue, or leave a device, a WAN link or a whole site out of the
+  health score and alerts (it still shows, marked as excluded).
+- **Firmware & lifecycle.** The firmware each model runs, devices with an update or no longer supported, and **security
+  advisories (CVEs)** for the UniFi Network application and your gateways, matched on your server against the public NVD list
+  (nothing about your network is sent). Dismiss a CVE that doesn't apply.
+- **Capacity.** Forecasts of when the gateway's CPU or memory will reach their warning levels, and trends for WAN traffic and
+  client counts, from the history UniMon keeps.
+- **Experience probes** (optional). Test the gateway, DNS, the internet and web sites from the UniMon server itself, as a
+  user's PC would, to tell a local problem from a provider one.
+- **Find.** One search over every site for a device or client by name, MAC (any format) or IP.
 - **Changes.** UniFi has no change log, so UniMon compares each reading of a console with the one before: devices added,
   removed or renamed, new firmware or address, the console's version and a WAN's public address.
 - **WAN health.** Official ISP, latency and loss data when a Site Manager key is added. The gateway's WAN health in the local
@@ -24,6 +36,12 @@ same signed updates.
 - **Demo mode** with three simulated consoles, so you can look around without UniFi gear.
 - **SiteMon.** UniMon serves a summary card that [SiteMon](https://github.com/RowShack/SiteMon) can show on one wallboard
   with your other MonStack apps.
+
+**What UniFi's API does not give** (so UniMon does not show it): VPN tunnels and gateway failover (HA), alarms and an event
+or audit log (UniMon builds **Changes** by comparing readings), per-client Wi-Fi signal, switch port and PoE detail, transceiver
+readings, and the speed of a WAN circuit (so WAN capacity is a trend, not a forecast against a limit). Device firmware CVEs
+are checked for gateways only: the public list has no usable names for access points and switches, and for a console read only
+through the Site Manager the Network application's version is not known.
 
 Not verified on real gear yet: a console that holds several sites, and the larger UniFi setups. The demo covers them only
 with simulated data.
